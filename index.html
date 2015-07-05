@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free coming soon template with jQuery countdown">
+    <meta name="author" content="http://bootstraptaste.com">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+
+
+    <title>Backpacker.io</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/bootstrap-theme.css" rel="stylesheet">
+
+    <!-- siimple style -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+	<div id="wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<h1>Backpacker.io</h1>
+					<h2 class="subtitle">We're working hard to improve the app and we'll be ready to launch in</h2>
+					<div id="countdown"></div>
+					<div class="signup">
+				    	<h3>Sign up for beta</h3>
+				    	<p id="signup-success" class="text-success"></p>
+				    	<p id="signup-error" class="text-danger"></p>
+					    <form class="signup-form form-inline" id="signup-form" role="form" onsubmit="return signup(this)">
+					        <input class="form-control input-lg" name="email" type="email" placeholder="Your Email!" required>
+					        <button class="btn btn-lg btn-success" id="signup-button" type="submit" >Join now</button>
+					    </form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+					<div id="content">
+
+					    <section>
+					    	<h3>Catch the next train!</h3>
+					    	
+					    	<div class="col-sm-6 feature">
+					    		<h4>All-in-one source for departure times for different transportation means</h4>
+					    		<h4>Get accurate transportaion times for trains, buses, and other transportation means in your target location.</h4>
+					      	</div>
+					      	<div class="col-sm-6 feature">
+					      		<img src="assets/img/train.png">
+					      	</div>
+					    </section>
+					    <section>
+					    	<h3>Get far and remote</h3>
+					    	<div class="col-sm-6 feature">
+					    		<img src="assets/img/taxi-2.jpg">
+					      	</div>
+					      	<div class="col-sm-6 feature">
+						      	<h4>Find directions get to remote areas. Only unconventional ways of transportation will take you there!</h4>
+					      	</div>					    	
+					    </section>
+					    <section  id="section3">
+					    	<h3>Feeling lost?</h3>
+					    	<div class="col-sm-6 feature">
+					    		<h4>Use tips and tricks by locals to get to your destination like a pro!</h4>
+					      	</div>
+					      	<div class="col-sm-6 feature">
+					      		<img src="assets/img/lost.jpg">
+					      	</div>						    	
+					    						    	
+					    </section><!-- 
+					    <section  id="section4">
+					    	<h3>Share your story!</h3>
+					    	<h4>Inspire others and take part of the adventure!</h4>
+							<a href="#" class="fa fa-twitter fa-3x" target="_blank"></a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    	<a href="#" class="fa fa-facebook-square fa-3x" target="_blank"></a>
+					    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    	<a href="#" class="fa fa-instagram fa-3x" target="_blank"></a>
+							
+							<div class="col-sm-12 feature">
+					      		<img src="assets/img/backpacker.jpg">
+					      	</div>				    	
+					    </section>		 -->
+					</div>	
+
+										    	    
+
+<footer>
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3">
+							<p class="copyright">Copyright &copy; 2015 - <a href="https://github.com/aminekarmouche">Amine Karmouche</a>
+							Terms of Service
+							</p>
+
+					</div>
+				</div>	
+</footer>
+
+
+
+	<script type="text/javascript" src="scrapeApp/scraper.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/jquery.countdown.min.js"></script>
+
+
+	<script type="text/javascript">
+	  	$('#countdown').countdown('2015/09/09', function(event) {
+		$(this).html(event.strftime('%w weeks %d days <br /> %H:%M:%S'));
+		});
+	</script>
+	<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+	<script>
+    var signupForm = document.getElementById('signup-form');
+    var signupSuccess = document.getElementById('signup-success');
+    var signupError = document.getElementById('signup-error');
+    var signupBtn = document.getElementById('signup-button');
+    var onSignupComplete = function(error) {
+      signupBtn.disabled = false;
+      if (error) {
+        signupError.innerHTML = 'Sorry. Could not signup.';
+      } else {
+        signupSuccess.innerHTML = '<h3>Thanks for signing up!</h3>';
+        // hide the form
+        signupForm.style.display = 'none';
+      }
+    };
+    function signup(formObj) {
+        // Store emails to firebase
+        var myFirebaseRef = new Firebase("https://backpackerio.firebaseIO.com");
+        myFirebaseRef.push({
+          email: formObj.email.value,
+        }, onSignupComplete);
+        signupBtn.disabled = true;
+        return false;
+    }
+</script>
+
+<script type="text/javascript">
+	var request = require('request');
+	var cheerio = require('cheerio');		
+	var urls = [];
+
+	//check ithub for request
+	var path = "http://www.oncf.ma/Pages/ResultatsHoraire.aspx?depart=CASA%20VOYAGEURS&arrivee=MEKNES&CodeRD=0093&CodeGD=00200&CodeRA=0093&CodeGA=00363&heure=0000&date=17/06/2015"
+	//var path = "http://reddit.com";
+	request(path, function(err, resp, body){
+		if(!err && resp.statusCode == 200){
+			var $ = cheerio.load(body);
+			$('td').each(function(){
+				//var url = $(this).attr('href');
+				var url = $(this).text();
+				urls.push(url);
+			});
+			console.log(urls);	
+		}
+	});	
+
+</script>
+
+  </body>
+</html>

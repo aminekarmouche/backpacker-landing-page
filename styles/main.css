@@ -1,0 +1,35 @@
+html, * {
+	padding:0;
+	margin:0;
+	background-color: #F3F7FF;
+	
+
+	 } //defining 0 margin and padding for all elements
+
+body { 
+	font-family:Arial,Verdana,Helvetica,sans-serif; 
+	font-size:40px;
+}
+
+h1{
+	font-family: Helvetica;
+}
+
+h2{
+	font-family: Helvetica;
+	color: #F3F7FF;	
+}
+
+a {
+	color:#000;
+	text-decoration:none;
+}
+
+a:hover{
+	text-decoration:underline;
+} 
+
+#frame {
+	width:960px; 
+	margin:0 auto;
+	} //Frame Container's CSS
